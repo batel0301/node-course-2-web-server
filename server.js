@@ -2,12 +2,15 @@ const express = require('express');
 const hbs = require('hbs');
 const fs = require('fs');
 
+const port = process.env.PORT || 3000;
+
+
 var app = express();
 
 hbs.registerPartials(__dirname+'/views/partials');
 app.set('view engine','hbs');
 
-//middleware
+//middleware - app.use
 app.use((req, res, next)=> {
 var now = new Date().toString();   
 var log = `${now}: ${req.method} ${req.url}`;
@@ -65,7 +68,7 @@ app.get('/bad',(req,res)=>
 
 
 
-app.listen(3000,()=>
+app.listen(port,()=>
 {
-    console.log('server is up, port : 3000');
+    console.log(`server is up, port : ${port}`);
 });
